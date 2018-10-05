@@ -1,5 +1,5 @@
 <div id=nodeTemplate style="position:absolute; width:200px; height:100px; display:none;";>
-  <div id=shapeLayout style="position:absolute; top:0px; left:0px; width:100%; height:100%; border-width:2px; border-style:solid; border-color:red;border-radius:5px; background-color:#FFFFFF;"></div>
+  <div id=shapeLayout style="position:absolute; top:0px; left:0px; width:100%; height:100%; border-width:1px; border-style:solid; border-color:red;border-radius:0px; background-color:#FFFFFF;"></div>
   <div id=toolsLayout style="position:absolute; top:0px; left:0px; width:100%; height:100%;"></div>
   <div id=textLayout style="position:absolute; top:0px; left:0px; width:100%; height:100%; display:table;">
     <div style="display:table-cell; vertical-align:middle; text-align:center;">
@@ -9,6 +9,13 @@
         <img src="data:image/gif;base64,R0lGODlhEAAOALMAAOazToeHh0tLS/7LZv/0jvb29t/f3//Ub//ge8WSLf/rhf/3kdbW1mxsbP//mf///yH5BAAAAAAALAAAAAAQAA4AAARe8L1Ekyky67QZ1hLnjM5UUde0ECwLJoExKcppV0aCcGCmTIHEIUEqjgaORCMxIC6e0CcguWw6aFjsVMkkIr7g77ZKPJjPZqIyd7sJAgVGoEGv2xsBxqNgYPj/gAwXEQA7" width="16" height="14" alt="embedded folder icon">
       </div>
     </div>
+  </div>
+  <div id=anchorLayout style="position:absolute; top:0px; left:0px; width:100%; height:100%;"></div>
+  <div id=selectionLayout style="position:absolute; top:0px; left:0px; width:100%; height:100%;  display:none;">
+    <div style="position:absolute; top:-2px; left:-2px; width:4px; height:4px; background-color:#B366B3"></div> 
+    <div style="position:absolute; top:-2px; right:-4px; width:4px; height:4px; background-color:#B366B3"></div> 
+    <div style="position:absolute; bottom:-4px; left:-2px; width:4px; height:4px; background-color:#B366B3"></div> 
+    <div style="position:absolute; bottom:-4px; right:-4px; width:4px; height:4px; background-color:#B366B3"></div> 
   </div>
 </div>
 
@@ -26,6 +33,16 @@
       newNode.style.left=x;
       newNode.style.top=y;
       newNode.querySelector("#textLayout #title").innerHTML = title;
+      newNode.addEventListener("mouseover", function() {
+        (function(self_) {
+          self_.querySelector("#selectionLayout").style.display="block";
+        }) (newNode);
+      });
+      newNode.addEventListener("mouseout", function() {
+        (function(self_) {
+          self_.querySelector("#selectionLayout").style.display="none";
+        }) (newNode);
+      });
       document.body.appendChild(newNode);
     },
     save: function() {
